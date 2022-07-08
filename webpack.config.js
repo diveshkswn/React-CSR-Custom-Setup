@@ -12,6 +12,7 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    chunkFilename: '[name].chunk.bundle.js',
   },
   module: {
     rules: [
@@ -22,13 +23,16 @@ const clientConfig = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 1,
-            modules: true,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
           },
-        }],
+        ],
       },
     ],
   },
@@ -42,9 +46,18 @@ const clientConfig = {
       inject: 'body',
     }),
   ],
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: (module, chunks, cacheGroupKey) => {
+        const allChunksNames = chunks.map((chunk) => chunk.name).join('-');
+        return allChunksNames;
+      },
+    },
   },
   devServer: {
     static: {
