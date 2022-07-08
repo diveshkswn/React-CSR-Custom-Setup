@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import styles from './styles/App.module.css';
 
-const UserInfoCard = React.lazy(() => import(/* webpackChunkName: "UserInfoCard" */'./components/UserInfoCard'));
+const UserInfoCard = React.lazy(() => import(/*  webpackChunkName: "UserInfoCard" */'./components/UserInfoCard'));
 function App(): JSX.Element {
   const [counter, setCounter] = useState(0);
   const [showUser, setShowUser] = useState(false);

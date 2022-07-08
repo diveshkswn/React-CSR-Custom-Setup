@@ -12,7 +12,7 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    chunkFilename: '[name].chunk.bundle.js',
+    chunkFilename: '[name].chunk.js',
   },
   module: {
     rules: [
@@ -44,6 +44,7 @@ const clientConfig = {
     new HtmlWebpackPlugin({
       template: './src/client/template/index.html',
       inject: 'body',
+      chunks: 'all',
     }),
   ],
   // devtool: 'inline-source-map',
