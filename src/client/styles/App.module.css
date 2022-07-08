@@ -1,0 +1,19 @@
+html, body{
+padding: 0;
+margin: 0;
+}
+.App-Main-Container{
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: antiquewhite;
+    padding: 100;
+    text-align: center;
+}
+
+button{
+    padding: 10px;
+    margin: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
