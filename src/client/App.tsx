@@ -1,7 +1,8 @@
 import React, { useState, Suspense } from 'react';
 import styles from './styles/App.module.css';
 
-const UserInfoCard = React.lazy(() => import(/*  webpackChunkName: "UserInfoCard" */'./components/UserInfoCard'));
+const UserInfoCard = React.lazy(() => import(/* webpackChunkName: "UserInfoCard" */ './components/UserInfoCard'));
+const UserInfoCardTwo = React.lazy(() => import(/* webpackChunkName: "UserInfoCardTwo" */ /* webpackPrefetch: true */'./components/UserInfoCardTwo'));
 function App(): JSX.Element {
   const [counter, setCounter] = useState(0);
   const [showUser, setShowUser] = useState(false);
@@ -37,6 +38,11 @@ function App(): JSX.Element {
       {showUser && (
         <Suspense fallback={<h4>Loading Component...</h4>}>
           <UserInfoCard />
+        </Suspense>
+      )}
+      {showUser && (
+        <Suspense fallback={<h4>Loading Component...</h4>}>
+          <UserInfoCardTwo />
         </Suspense>
       )}
     </div>
